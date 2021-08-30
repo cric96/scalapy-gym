@@ -8,9 +8,13 @@ idePackagePrefix := Some("org.cric96.github.io")
 
 libraryDependencies += "me.shadaj" %% "scalapy-core" % "0.5.0"
 
-fork := true
+libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.10" % "test"
+
+testFrameworks += new TestFramework("utest.runner.Framework")
+fork           := true
 
 import scala.sys.process._
+
 lazy val pythonLdFlags = {
   val withoutEmbed = "python3-config --ldflags".!!
   if (withoutEmbed.contains("-lpython")) {
@@ -21,8 +25,7 @@ lazy val pythonLdFlags = {
   }
 }
 
-lazy val pythonLibsDir = {
+lazy val pythonLibsDir =
   pythonLdFlags.find(_.startsWith("-L")).get.drop("-L".length)
-}
 
 javaOptions += s"-Djna.library.path=$pythonLibsDir"
