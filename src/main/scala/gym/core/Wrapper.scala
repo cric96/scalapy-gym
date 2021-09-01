@@ -1,8 +1,8 @@
-package org.cric96.github.io
+package io.github.cric96
 package gym.core
 
 import me.shadaj.scalapy.py
-import org.cric96.github.io.gym.spaces.Space
+import io.github.cric96.gym.spaces.Space
 
 /** From https://github.com/openai/gym/blob/master/gym/core.py
   * @tparam A

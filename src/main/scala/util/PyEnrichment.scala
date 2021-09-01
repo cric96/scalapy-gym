@@ -1,4 +1,4 @@
-package org.cric96.github.io
+package io.github.cric96
 package util
 
 import me.shadaj.scalapy.py

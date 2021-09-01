@@ -1,4 +1,4 @@
-package org.cric96.github.io
+package io.github.cric96
 package gym.spaces
 
 import gym.ExternalType

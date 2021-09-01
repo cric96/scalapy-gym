@@ -1,4 +1,4 @@
-package org.cric96.github.io
+package io.github.cric96
 
 import gym.Gym
 import gym.spaces.Box
