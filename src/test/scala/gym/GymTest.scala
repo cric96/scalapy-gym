@@ -10,7 +10,7 @@ import scala.util.Try
 
 object GymTest extends TestSuite {
 
-  val tests = Tests {
+  override def tests = Tests {
     test("Gym should") {
       test("create envs untyped") {
         assert {
@@ -36,7 +36,7 @@ object GymTest extends TestSuite {
         val env: Env[String, Int, Discrete, Discrete] = Gym.make("FrozenLake-v1")
         val eitherInt = Try(env.actionSpace.sample())
           .flatMap(_ => Try(env.observationSpace.sample()))
-          .isSuccess
+          .isFailure
         assert(eitherInt)
       }
     }
