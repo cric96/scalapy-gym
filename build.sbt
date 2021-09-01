@@ -44,5 +44,4 @@ enablePlugins(SiteScaladocPlugin)
 
 // Gh pages publish
 enablePlugins(GhpagesPlugin)
-git.remoteRepo := "git@github.com:{your username}/{your project}.git"
 git.remoteRepo := scmInfo.value.get.connection.replace("scm:git:", "")
