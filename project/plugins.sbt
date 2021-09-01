@@ -7,3 +7,5 @@ addSbtPlugin("org.wartremover" % "sbt-wartremover" % "2.4.16")
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.3")
 // Publish helper
 addSbtPlugin("com.dwijnand" % "sbt-dynver" % "4.1.1")
+// Site generator
+addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.4.1")

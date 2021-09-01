@@ -1,7 +1,6 @@
 package io.github.cric96
 package gym
 
-import gym.core.Env
 import gym.spaces.Discrete
 
 import utest._
@@ -10,7 +9,8 @@ import scala.util.Try
 
 object GymTest extends TestSuite {
 
-  override def tests = Tests {
+  @SuppressWarnings(Array("org.wartremover.warts.Nothing")) //because of test frame
+  val tests: Tests = Tests {
     test("Gym should") {
       test("create envs untyped") {
         assert {
@@ -19,7 +19,7 @@ object GymTest extends TestSuite {
       }
 
       test("create a typed env") {
-        val env: Env[Int, Int, Discrete, Discrete] = Gym.make("FrozenLake-v1")
+        val env = Gym.make[Int, Int, Discrete, Discrete]("FrozenLake-v1")
         val eitherInt = Try(env.actionSpace.sample())
           .flatMap(_ => Try(env.observationSpace.sample()))
           .isSuccess
@@ -33,7 +33,7 @@ object GymTest extends TestSuite {
       }
 
       test("thrown exception if type is wrong") {
-        val env: Env[String, Int, Discrete, Discrete] = Gym.make("FrozenLake-v1")
+        val env = Gym.make[String, Int, Discrete, Discrete]("FrozenLake-v1")
         val eitherInt = Try(env.actionSpace.sample())
           .flatMap(_ => Try(env.observationSpace.sample()))
           .isFailure

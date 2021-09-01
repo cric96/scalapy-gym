@@ -11,13 +11,17 @@ import gym.spaces.Tuple
 object EnvFactory {
 
   object ToyText {
-    def blackJackV0(): Env[Int, (Int, Int, Int), Discrete, Tuple] = Gym.make("Blackjack-v0")
-    def frozenLakeV1(): Env[Int, Int, Discrete, Discrete] = Gym.make("FrozenLake-v1")
-    def frozenLakeV18x8(): Env[Int, Int, Discrete, Discrete] = Gym.make("FrozenLake8x8-v1")
-    def guessingGame(): Env[Int, Float, Discrete, Box] = Gym.make("GuessingGame-v0")
-    def hotterColderV0(): Env[Float, Int, Box, Discrete] = Gym.make("HotterColder-v0")
-    def nChainV0(): Env[Int, Int, Discrete, Discrete] = Gym.make("NChain-v0")
-    def rouletteV0(): Env[Int, Int, Discrete, Discrete] = Gym.make("Roulette-v0")
+
+    def blackJackV0(): Env[Int, (Int, Int, Int), Discrete, Tuple] =
+      Gym.make[Int, (Int, Int, Int), Discrete, Tuple]("Blackjack-v0")
+    def frozenLakeV1(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("FrozenLake-v1")
+
+    def frozenLakeV18x8(): Env[Int, Int, Discrete, Discrete] =
+      Gym.make[Int, Int, Discrete, Discrete]("FrozenLake8x8-v1")
+    def guessingGame(): Env[Int, Float, Discrete, Box] = Gym.make[Int, Float, Discrete, Box]("GuessingGame-v0")
+    def hotterColderV0(): Env[Float, Int, Box, Discrete] = Gym.make[Float, Int, Box, Discrete]("HotterColder-v0")
+    def nChainV0(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("NChain-v0")
+    def rouletteV0(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("Roulette-v0")
   }
 
   object ClassicControl {}

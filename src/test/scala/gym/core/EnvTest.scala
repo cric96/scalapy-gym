@@ -15,9 +15,10 @@ object EnvTest extends TestSuite {
   val basicEnv: Env[Int, Int, Discrete, Discrete] = EnvFactory.ToyText.nChainV0()
   val aSeed: Int = 42
 
-  def progress(env: Env[Int, Int, Discrete, Discrete] = basicEnv): Env.StepResponse[Int] =
+  def progress(env: Env[Int, Int, Discrete, Discrete]): Env.StepResponse[Int] =
     env.step(basicEnv.actionSpace.sample())
 
+  @SuppressWarnings(Array("org.wartremover.warts.Nothing")) //because of test frame
   override def tests: Tests = Tests {
     test("Env") {
       test("should return action space accordingly") {
@@ -55,8 +56,8 @@ object EnvTest extends TestSuite {
       }
 
       test("should update the world when step is called") {
-        basicEnv.reset()
-        val newState = progress()
+        val reset = basicEnv.reset()
+        val newState = progress(basicEnv)
         assert {
           (for {
             reward <- Try(newState.reward)
