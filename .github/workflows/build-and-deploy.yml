@@ -37,5 +37,7 @@ jobs:
         run: sbt makeSite
       - name: Publish
         run: sbt ghpagesPushSite
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
