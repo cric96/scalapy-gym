@@ -1,4 +1,4 @@
-name := "scalapy-gym-facade"
+name := "scalapy-gym"
 
 lazy val scala211 = "2.11.1"
 lazy val scala212 = "2.12.1"
