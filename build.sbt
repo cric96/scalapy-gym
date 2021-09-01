@@ -43,5 +43,7 @@ javaOptions += s"-Djna.library.path=$pythonLibsDir"
 enablePlugins(SiteScaladocPlugin)
 
 // Gh pages publish
-enablePlugins(GhpagesPlugin)
-git.remoteRepo := scmInfo.value.get.connection.replace("scm:git:", "")
+//enablePlugins(GhpagesPlugin)
+enablePlugins(GitHubPagesPlugin)
+gitHubPagesSiteDir := baseDirectory.value / "target/site"
+//git.remoteRepo := scmInfo.value.get.connection.replace("scm:git:", "")

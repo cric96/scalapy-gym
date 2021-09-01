@@ -10,4 +10,4 @@ addSbtPlugin("com.dwijnand" % "sbt-dynver" % "4.1.1")
 // Site generator
 addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.4.1")
 // Publish pages
-addSbtPlugin("com.typesafe.sbt" % "sbt-ghpages" % "0.6.3")
+addSbtPlugin("io.kevinlee" % "sbt-github-pages" % "0.6.0")

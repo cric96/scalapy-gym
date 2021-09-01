@@ -26,6 +26,7 @@ jobs:
       run: sbt +test
   Deploy-Pages:
     runs-on: ubuntu-latest
+    needs: [Build]
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -36,7 +37,7 @@ jobs:
       - name: Make site and scala doc
         run: sbt makeSite
       - name: Publish
-        run: sbt ghpagesPushSite
+        run: sbt publishToGitHubPages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
