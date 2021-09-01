@@ -1,7 +1,7 @@
 name := "scalapy-gym"
 
-lazy val scala211 = "2.11.1"
-lazy val scala212 = "2.12.1"
+lazy val scala211 = "2.11.12"
+lazy val scala212 = "2.12.12"
 lazy val scala213 = "2.13.6"
 lazy val supportedScalaVersion = Seq(scala212, scala213)
 
