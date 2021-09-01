@@ -53,7 +53,7 @@ trait GymMaker {
     * @tparam GE the type of environment selected
     * @return an instance of GE
     */
-  def make[A, O, AS[a] <: Space[a], OS[o] <: Space[o], GE[_, _, _[a] <: Space[a], _[o] <: Space[o]]](
+  def makeGenericEnv[A, O, AS[a] <: Space[a], OS[o] <: Space[o], GE[_, _, _[a] <: Space[a], _[o] <: Space[o]]](
       name: String
   )(implicit
       obs: Reader[O],
@@ -79,7 +79,7 @@ trait GymMaker {
     * @tparam OS the type of the space associate to actions, e.g. Space, Box, Dict, Tuple, ..
     * @return an instance of E
     */
-  def make[AS[_A] <: Space[_A], OS[_O] <: Space[_O]](
+  def makeGenericSpaces[AS[_A] <: Space[_A], OS[_O] <: Space[_O]](
       name: String
   )(implicit
       actionSpace: Reader[AS[py.Dynamic]],

@@ -1,14 +1,15 @@
 package io.github.cric96
 package gym.core
 
+import gym.core.Env.StandardRenderMode
+import gym.core.Env.StepResponse
+import gym.spaces.Space
+import util.PythonInternals
+
 import me.shadaj.scalapy.py
 import me.shadaj.scalapy.py.|
 import me.shadaj.scalapy.readwrite.Reader
 import me.shadaj.scalapy.readwrite.Writer
-import io.github.cric96.gym.core.Env.StandardRenderMode
-import io.github.cric96.gym.core.Env.StepResponse
-import io.github.cric96.gym.spaces.Space
-import io.github.cric96.util.PythonInternals
 
 /** From https://github.com/openai/gym/blob/master/gym/core.py
   * Env is a facade that adds types to standard open-ai environments.
@@ -56,6 +57,7 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     */
   def reset()(implicit obs: Reader[Observation]): Observation = py.native
 
+  @SuppressWarnings(Array("org.wartremover.warts.DefaultArguments")) //because of python interface
   /** @param mode a String o one of the standard mode ("human", "rbg_array", "ansi")
     * @return refer to https://github.com/openai/gym/blob/master/gym/core.py
     */
@@ -67,6 +69,7 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
   /** refer to https://github.com/openai/gym/blob/master/gym/core.py */
   def close(): Unit = py.native
 
+  @SuppressWarnings(Array("org.wartremover.warts.DefaultArguments")) //because of python interface
   /** @param seed an integer or an optional
     * @return refer to https://github.com/openai/gym/blob/master/gym/core.py
     */
@@ -85,7 +88,7 @@ object Env {
     * @param info contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)
     * @tparam O the type of admissible observation for this environment, e.g. Int, py.Any, ...
     */
-  case class StepResponse[O](observation: O, reward: Float, done: Boolean, info: py.Dynamic)
+  final case class StepResponse[O](observation: O, reward: Float, done: Boolean, info: py.Dynamic)
       extends Product4[O, Float, Boolean, py.Any] {
     override def _1: O = observation
     override def _2: Float = reward

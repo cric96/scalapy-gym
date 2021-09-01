@@ -21,6 +21,7 @@ trait Box[Action] extends Space[Action] with PythonInternals {
   /** python name: reward_range */
   val boundedAbove: ExternalType.NumpyArray = me.bounded_above.as[ExternalType.NumpyArray]
 
+  @SuppressWarnings(Array("org.wartremover.warts.DefaultArguments")) //because of python interface
   /** python name: is_range
     * @param manner
     * @return

@@ -2,14 +2,14 @@ name := "scalapy-gym"
 
 lazy val scala211 = "2.11.1"
 lazy val scala212 = "2.12.1"
-lazy val scala213 = "2.13.1"
+lazy val scala213 = "2.13.6"
 lazy val supportedScalaVersion = Seq(scala212, scala213)
-version := "0.1"
 
+ThisBuild / scalaVersion       := scala213
 ThisBuild / organization       := "io.github.cric96"
 ThisBuild / crossScalaVersions := supportedScalaVersion
-
-idePackagePrefix := Some("io.github.cric96")
+wartremoverErrors             ++= Warts.all
+idePackagePrefix               := Some("io.github.cric96")
 
 libraryDependencies += "me.shadaj" %% "scalapy-core" % "0.5.0"
 libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.10" % "test"
