@@ -7,6 +7,7 @@ import gym.spaces.Box
 import gym.spaces.Discrete
 import gym.spaces.Tuple
 
+/** a facade for some of the standard open ai environments */
 object EnvFactory {
 
   object ToyText {
