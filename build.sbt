@@ -8,14 +8,19 @@ lazy val supportedScalaVersion = Seq(scala212, scala213)
 ThisBuild / scalaVersion       := scala213
 ThisBuild / organization       := "io.github.cric96"
 ThisBuild / crossScalaVersions := supportedScalaVersion
-wartremoverErrors             ++= Warts.all
-idePackagePrefix               := Some("io.github.cric96")
+scmInfo := Some(
+  ScmInfo(url("https://github.com/cric96/scalapy-gym"), "scm:git:git@github.com:cric96/scalapy-gym.git")
+)
+ThisBuild / wartremoverErrors ++= Warts.all
+ThisBuild / idePackagePrefix   := Some("io.github.cric96")
 
 libraryDependencies += "me.shadaj" %% "scalapy-core" % "0.5.0"
 libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.10" % "test"
 
 testFrameworks += new TestFramework("utest.runner.Framework")
 fork           := true
+
+// Python integration
 
 import scala.sys.process._
 
@@ -33,3 +38,11 @@ lazy val pythonLibsDir =
   pythonLdFlags.find(_.startsWith("-L")).get.drop("-L".length)
 
 javaOptions += s"-Djna.library.path=$pythonLibsDir"
+
+// Site generation
+enablePlugins(SiteScaladocPlugin)
+
+// Gh pages publish
+enablePlugins(GhpagesPlugin)
+git.remoteRepo := "git@github.com:{your username}/{your project}.git"
+git.remoteRepo := scmInfo.value.get.connection.replace("scm:git:", "")

@@ -9,3 +9,5 @@ addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.3")
 addSbtPlugin("com.dwijnand" % "sbt-dynver" % "4.1.1")
 // Site generator
 addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.4.1")
+// Publish pages
+addSbtPlugin("com.typesafe.sbt" % "sbt-ghpages" % "0.6.3")
