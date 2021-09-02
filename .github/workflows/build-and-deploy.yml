@@ -36,12 +36,12 @@ jobs:
           distribution: 'adopt'
       - name: Make site and scala doc
         run: sbt makeSite
-      - name: Publish
+      - name: Publish site
         run: sbt publishToGitHubPages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release
-        run: sbt +ci-release
+      - name: Release packages
+        run: sbt ci-release
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
