@@ -1,6 +1,7 @@
 package io.github.cric96
 package gym
 
+import gym.core.Env
 import gym.spaces.Discrete
 
 import utest.{TestSuite, Tests, test}
@@ -20,6 +21,22 @@ object GymTest extends TestSuite {
 
       test("create a typed env") {
         val env = Gym.make[Int, Int, Discrete, Discrete]("FrozenLake-v1")
+        val eitherInt = Try(env.actionSpace.sample())
+          .flatMap(_ => Try(env.observationSpace.sample()))
+          .isSuccess
+        assert(eitherInt)
+      }
+
+      test("create a generic env") {
+        val env = Gym.makeGenericEnv[Int, Int, Discrete, Discrete, Env]("FrozenLake-v1")
+        val eitherInt = Try(env.actionSpace.sample())
+          .flatMap(_ => Try(env.observationSpace.sample()))
+          .isSuccess
+        assert(eitherInt)
+      }
+
+      test("create generic spaces env") {
+        val env = Gym.makeGenericSpaces[Discrete, Discrete]("FrozenLake-v1")
         val eitherInt = Try(env.actionSpace.sample())
           .flatMap(_ => Try(env.observationSpace.sample()))
           .isSuccess

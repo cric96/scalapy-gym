@@ -16,7 +16,7 @@ object EnvFactory {
 
     def frozenLakeV18x8(): Env[Int, Int, Discrete, Discrete] =
       Gym.make[Int, Int, Discrete, Discrete]("FrozenLake8x8-v1")
-    def guessingGame(): Env[Int, Float, Discrete, Box] = Gym.make[Int, Float, Discrete, Box]("GuessingGame-v0")
+    def guessingGameV0(): Env[Float, Int, Box, Discrete] = Gym.make[Float, Int, Box, Discrete]("GuessingGame-v0")
     def hotterColderV0(): Env[Float, Int, Box, Discrete] = Gym.make[Float, Int, Box, Discrete]("HotterColder-v0")
     def nChainV0(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("NChain-v0")
     def rouletteV0(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("Roulette-v0")

@@ -16,22 +16,25 @@ trait Box[Action] extends Space[Action] with PythonInternals {
   val high: ExternalType.NumpyArray = py.native
   val low: ExternalType.NumpyArray = py.native
   val shape: ExternalType.NumpyArray = py.native
-  /** python name: reward_range */
-  val boundedLow: ExternalType.NumpyArray = me.bounded_low.as[ExternalType.NumpyArray]
-  /** python name: reward_range */
-  val boundedAbove: ExternalType.NumpyArray = me.bounded_above.as[ExternalType.NumpyArray]
+  /** python name: bounded_below */
+  def boundedBelow: ExternalType.NumpyArray = me.bounded_below.as[ExternalType.NumpyArray]
+  /** python name: bounded_above */
+  def boundedAbove: ExternalType.NumpyArray = me.bounded_above.as[ExternalType.NumpyArray]
 
   @SuppressWarnings(Array("org.wartremover.warts.DefaultArguments")) //because of python interface
   /** python name: is_range
     * @param manner
     * @return
     */
-  def isBounded(manner: BoundedManner | String = BoundedManner.Both): Boolean = manner
-    .map(
-      leftMap = manner => me.is_bounded(manner.manner),
-      rightMap = manner => me.is_bounded(manner)
-    )
-    .as[Boolean]
+  def isBounded(manner: BoundedManner | String = "both"): Boolean = {
+    val value = manner
+      .map(
+        leftMap = manner => me.is_bounded(manner.manner),
+        rightMap = manner => me.is_bounded(manner)
+      )
+    value.toString().equalsIgnoreCase("True") // TODO IMPROVE, seems that manner.as[Boolean] does not work..
+  }
+
 }
 
 object Box {

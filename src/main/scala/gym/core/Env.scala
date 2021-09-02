@@ -47,8 +47,9 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     */
   def step(action: Action)(implicit obs: Reader[Observation], wr: Writer[Action]): StepResponse[Observation] = {
     val step = me.step(action).as[(Observation, Float, Boolean, py.Dynamic)]
-    val wrappedStepResponse = StepResponse(step._1, step._2, step._3, step._4)
-    wrappedStepResponse
+    step match {
+      case (obs, reward, done, info) => StepResponse(obs, reward, done, info)
+    }
   }
 
   /** @param obs type class needed to convert the scala value to the python value
@@ -88,12 +89,6 @@ object Env {
     * @tparam O the type of admissible observation for this environment, e.g. Int, py.Any, ...
     */
   final case class StepResponse[O](observation: O, reward: Float, done: Boolean, info: py.Dynamic)
-      extends Product4[O, Float, Boolean, py.Any] {
-    override def _1: O = observation
-    override def _2: Float = reward
-    override def _3: Boolean = done
-    override def _4: py.Dynamic = info
-  }
 
   /** Union type for render mode, admissible value: human, rgb_array, ansi
     * @param value the python string value

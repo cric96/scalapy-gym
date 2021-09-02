@@ -1,18 +1,17 @@
 package io.github.cric96
 package gym.core
 
+import gym.core.Env.StandardRenderMode
 import gym.envs.EnvFactory
 import gym.spaces.Discrete
 import util.PyEnrichment.RichPyAny
 
-import utest.TestSuite
-import utest.Tests
-import utest.test
+import utest.{TestSuite, Tests, test}
 
 import scala.util.Try
 
 object EnvTest extends TestSuite {
-  val basicEnv: Env[Int, Int, Discrete, Discrete] = EnvFactory.ToyText.nChainV0()
+  val basicEnv: Env[Int, Int, Discrete, Discrete] = EnvFactory.ToyText.frozenLakeV1()
   val aSeed: Int = 42
 
   def progress(env: Env[Int, Int, Discrete, Discrete]): Env.StepResponse[Int] =
@@ -26,11 +25,19 @@ object EnvTest extends TestSuite {
           Try(basicEnv.actionSpace).isSuccess
         }
       }
+
+      test("should return reward range accordingly") {
+        assert {
+          Try(basicEnv.rewardRange).isSuccess
+        }
+      }
+
       test("should return observation space accordingly") {
         assert {
           Try(basicEnv.observationSpace).isSuccess
         }
       }
+
       test("should be possible to reset the environment") {
         assert {
           Try(basicEnv.reset()).isSuccess
@@ -45,6 +52,18 @@ object EnvTest extends TestSuite {
             withNone <- Try(basicEnv.seed(None))
             withSome <- Try(basicEnv.seed(Some(aSeed)))
           } yield (basicRequest, withNumber, withNone, withSome)).isSuccess
+        }
+      }
+
+      test("should be possible to render environment") {
+        assert {
+          Try(basicEnv.render()).isSuccess
+        }
+      }
+
+      test("should be possible to render environment with StandardRenderModes") {
+        assert {
+          Try(basicEnv.render(StandardRenderMode.Human)).isSuccess
         }
       }
 
@@ -82,6 +101,12 @@ object EnvTest extends TestSuite {
         }
       }
 
+      test("StepResponse") {
+        test("should work as tuple") {
+          val reset = basicEnv.reset()
+          val newState = progress(basicEnv)
+        }
+      }
     }
   }
 }
