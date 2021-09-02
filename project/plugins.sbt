@@ -1,7 +1,4 @@
 addSbtPlugin("org.jetbrains" % "sbt-ide-settings" % "1.1.0")
-// For native support
-addSbtPlugin("org.portable-scala" % "sbt-scala-native-crossproject" % "1.1.0")
-addSbtPlugin("org.scala-native" % "sbt-scala-native" % "0.4.0")
 // Linter
 addSbtPlugin("org.wartremover" % "sbt-wartremover" % "2.4.16")
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.3")
@@ -11,3 +8,5 @@ addSbtPlugin("com.dwijnand" % "sbt-dynver" % "4.1.1")
 addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.4.1")
 // Publish pages
 addSbtPlugin("io.kevinlee" % "sbt-github-pages" % "0.6.0")
+// Coverage
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.8.2")
