@@ -2,10 +2,9 @@ name := "scalapy-gym"
 // For publish setting
 inThisBuild(
   List(
-    organization           := "io.github.cric96",
-    homepage               := Some(url("https://github.com/cric96/scalapy-gym")),
-    licenses               := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
-    sonatypeCredentialHost := "s01.oss.sonatype.org",
+    organization := "io.github.cric96",
+    homepage     := Some(url("https://github.com/cric96/scalapy-gym")),
+    licenses     := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
     developers := List(
       Developer(
         "cric96",
