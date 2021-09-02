@@ -10,3 +10,5 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.4.1")
 addSbtPlugin("io.kevinlee" % "sbt-github-pages" % "0.6.0")
 // Coverage
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.8.2")
+// Sonatype upload
+addSbtPlugin("com.geirsson" % "sbt-ci-release" % "1.5.7")
