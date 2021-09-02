@@ -1,15 +1,13 @@
 package io.github.cric96
 package gym.core
 
-import gym.core.Env.StandardRenderMode
-import gym.core.Env.StepResponse
+import gym.core.Env.{StandardRenderMode, StepResponse}
 import gym.spaces.Space
 import util.PythonInternals
 
 import me.shadaj.scalapy.py
 import me.shadaj.scalapy.py.|
-import me.shadaj.scalapy.readwrite.Reader
-import me.shadaj.scalapy.readwrite.Writer
+import me.shadaj.scalapy.readwrite.{Reader, Writer}
 
 /** From https://github.com/openai/gym/blob/master/gym/core.py
   * Env is a facade that adds types to standard open-ai environments.
@@ -49,7 +47,8 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     */
   def step(action: Action)(implicit obs: Reader[Observation], wr: Writer[Action]): StepResponse[Observation] = {
     val step = me.step(action).as[(Observation, Float, Boolean, py.Dynamic)]
-    StepResponse(step._1, step._2, step._3, step._4)
+    val wrappedStepResponse = StepResponse(step._1, step._2, step._3, step._4)
+    wrappedStepResponse
   }
 
   /** @param obs type class needed to convert the scala value to the python value

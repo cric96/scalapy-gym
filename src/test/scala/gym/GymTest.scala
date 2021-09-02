@@ -3,7 +3,7 @@ package gym
 
 import gym.spaces.Discrete
 
-import utest._
+import utest.{TestSuite, Tests, test}
 
 import scala.util.Try
 

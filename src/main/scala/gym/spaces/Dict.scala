@@ -5,4 +5,4 @@ import me.shadaj.scalapy.py
 
 //TODO
 @py.native
-trait Dict[Action] extends Space[Action] {}
+trait Dict[Action] extends Space[Action]

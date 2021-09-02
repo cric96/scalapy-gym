@@ -13,4 +13,4 @@ import me.shadaj.scalapy.py
   * @tparam W
   */
 @py.native
-trait Wrapper[A, O, AS[a] <: Space[a], OS[o] <: Space[o], W <: Env[A, O, AS, OS]] extends Env[A, O, AS, OS] {}
+trait Wrapper[A, O, AS[a] <: Space[a], OS[o] <: Space[o], W <: Env[A, O, AS, OS]] extends Env[A, O, AS, OS]

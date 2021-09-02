@@ -3,9 +3,7 @@ package gym.envs
 
 import gym.Gym
 import gym.core.Env
-import gym.spaces.Box
-import gym.spaces.Discrete
-import gym.spaces.Tuple
+import gym.spaces.{Box, Discrete, Tuple}
 
 /** a facade for some of the standard open ai environments */
 object EnvFactory {
@@ -24,5 +22,5 @@ object EnvFactory {
     def rouletteV0(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("Roulette-v0")
   }
 
-  object ClassicControl {}
+  object ClassicControl
 }

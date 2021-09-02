@@ -19,7 +19,7 @@ object EnvTest extends TestSuite {
     env.step(basicEnv.actionSpace.sample())
 
   @SuppressWarnings(Array("org.wartremover.warts.Nothing")) //because of test frame
-  override def tests: Tests = Tests {
+  val tests: Tests = Tests {
     test("Env") {
       test("should return action space accordingly") {
         assert {

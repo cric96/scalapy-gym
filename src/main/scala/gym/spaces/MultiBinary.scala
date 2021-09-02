@@ -5,4 +5,4 @@ import me.shadaj.scalapy.py
 
 //TODO
 @py.native
-trait MultiBinary[Action] extends Space[Action] {}
+trait MultiBinary[Action] extends Space[Action]

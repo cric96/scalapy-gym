@@ -2,8 +2,7 @@ package io.github.cric96
 package gym.spaces
 
 import me.shadaj.scalapy.py
-import me.shadaj.scalapy.readwrite.Reader
-import me.shadaj.scalapy.readwrite.Writer
+import me.shadaj.scalapy.readwrite.{Reader, Writer}
 
 /** refer to https://github.com/openai/gym/blob/master/gym/spaces/space.py
   * @tparam Action the type of admissible action for this environment, e.g. Int, py.Any, ...
