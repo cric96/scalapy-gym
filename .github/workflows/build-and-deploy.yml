@@ -51,6 +51,12 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install python dependencies
+        run: python -m pip install -r requirements.txt
       - name: Coverage report
         run: sbt clean coverage test coverageReport
       - name: Publish on Codacy
