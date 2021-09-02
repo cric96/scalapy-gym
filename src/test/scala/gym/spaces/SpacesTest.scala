@@ -13,7 +13,7 @@ import scala.util.Try
 object SpacesTest extends TestSuite {
   private val basicEnv: Env[Int, Int, Discrete, Discrete] = EnvFactory.ToyText.frozenLakeV1()
   private val boxSpace = EnvFactory.ToyText.hotterColderV0().actionSpace
-  val space: Space[Int] = basicEnv.actionSpace
+  val space: Discrete[Int] = basicEnv.actionSpace
 
   @SuppressWarnings(Array("org.wartremover.warts.Nothing")) //because of test frame
   val tests: Tests = Tests {
@@ -26,6 +26,11 @@ object SpacesTest extends TestSuite {
       test("should contains a value gotten by sampling") {
         val data = space.sample()
         assert(space.contains(data))
+      }
+    }
+    test("Discrete") {
+      test("should access to n") {
+        Try(space.n)
       }
     }
     test("Box") {

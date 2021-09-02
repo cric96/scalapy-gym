@@ -5,4 +5,6 @@ import me.shadaj.scalapy.py
 
 //TODO
 @py.native
-trait Discrete[Action] extends Space[Action]
+trait Discrete[Action] extends Space[Action] {
+  def n: Int = py.native
+}
