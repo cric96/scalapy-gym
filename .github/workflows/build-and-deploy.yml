@@ -31,3 +31,6 @@ jobs:
       with:
         project-token: ${{ secrets.CODACY_API_TOKEN }}
         coverage-reports: target/scala-2.13/coverage-report/cobertura.xml
+    - name: Create a release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
