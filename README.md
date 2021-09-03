@@ -8,3 +8,5 @@ A ScalaPy Facade for OpenAI Gym!
 ![Build](https://github.com/cric96/scalapy-gym/actions/workflows/build-and-deploy.yml/badge.svg)
 ## Links
 [![Scala Doc](https://img.shields.io/badge/-Scala%20doc-red?logo=scala)](https://cric96.github.io/scalapy-gym/latest/api/)
+## Example
+- [Basic Q-Learning implementation](https://github.com/cric96/scala-rl-examples/blob/main/qlearning.ipynb)
