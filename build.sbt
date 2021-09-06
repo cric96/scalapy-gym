@@ -1,26 +1,23 @@
 name := "scalapy-gym"
 // For publish setting
 enablePlugins(GitVersioning)
-inThisBuild(
-  List(
-    organization           := "io.github.cric96",
-    homepage               := Some(url("https://github.com/cric96/scalapy-gym")),
-    licenses               := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
-    sonatypeCredentialHost := Sonatype.sonatype01,
-    sonatypeRepository     := s"https://${Sonatype.sonatype01}/service/local",
-    //publishTo              := sonatypePublishTo.value,
-    developers := List(
-      Developer(
-        "cric96",
-        "Gianluca Aguzzi",
-        "gianluca.aguzzi@studio.unibo.it",
-        url("https://cric96.github.io/")
-      )
-    )
+
+ThisBuild / organization           := "io.github.cric96"
+ThisBuild / homepage               := Some(url("https://github.com/cric96/scalapy-gym"))
+ThisBuild / licenses               := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
+ThisBuild / sonatypeCredentialHost := Sonatype.sonatype01
+ThisBuild / publishTo              := sonatypePublishToBundle.value
+ThisBuild / scmInfo := Some(
+  ScmInfo(url("https://github.com/cric96/scalapy-gym"), "scm:git:git@github.com:cric96/scalapy-gym.git")
+)
+ThisBuild / developers := List(
+  Developer(
+    "cric96",
+    "Gianluca Aguzzi",
+    "gianluca.aguzzi@studio.unibo.it",
+    url("https://cric96.github.io/")
   )
 )
-ThisBuild / publishTo := sonatypePublishToBundle.value
-
 lazy val scala211 = "2.11.12"
 lazy val scala212 = "2.12.12"
 lazy val scala213 = "2.13.6"
