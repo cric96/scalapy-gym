@@ -50,7 +50,7 @@ jobs:
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
       - name: Release packages (tagged)
-        if: ${{ github.ref == refs/heads/main }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: sbt clean ciReleaseTagNextVersion ciRelease
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
