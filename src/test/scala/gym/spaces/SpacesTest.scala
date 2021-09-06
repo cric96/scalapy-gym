@@ -3,9 +3,8 @@ package gym.spaces
 
 import gym.core.Env
 import gym.envs.EnvFactory
+import gym.spaces.Box.BoundedManner
 
-import io.github.cric96.gym.spaces.Box.BoundedManner
-import me.shadaj.scalapy.readwrite.Reader
 import utest.{TestSuite, Tests, test}
 
 import scala.util.Try
