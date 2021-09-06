@@ -5,8 +5,6 @@ import gym.core.Env
 import gym.envs.EnvFactory.ToyText
 import gym.spaces.{Box, Discrete, Space, Tuple}
 
-import io.github.cric96.gym.{ExternalType, Gym}
-import me.shadaj.scalapy.py
 import me.shadaj.scalapy.readwrite.{Reader, Writer}
 import utest.{TestSuite, Tests, test}
 
