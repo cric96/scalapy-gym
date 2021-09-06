@@ -8,18 +8,13 @@ inThisBuild(
     licenses               := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
     sonatypeCredentialHost := Sonatype.sonatype01,
     sonatypeRepository     := s"https://${Sonatype.sonatype01}/service/local",
+    publishTo              := sonatypePublishToBundle.value,
     developers := List(
       Developer(
         "cric96",
         "Gianluca Aguzzi",
         "gianluca.aguzzi@studio.unibo.it",
         url("https://cric96.github.io/")
-      )
-    ),
-    scmInfo := Some(
-      ScmInfo(
-        url("https://github.com/cric96/scalapy-gym"),
-        "scm:git:git@github.com:cric96/scalapy-gym.git"
       )
     )
   )

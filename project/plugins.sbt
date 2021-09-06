@@ -11,7 +11,4 @@ addSbtPlugin("io.kevinlee" % "sbt-github-pages" % "0.6.0")
 // Coverage
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.8.2")
 // Sonatype upload
-//addSbtPlugin("com.geirsson" % "sbt-ci-release" % "1.5.7")
-addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.9.10")
-// Semver
-addSbtPlugin("io.shiftleft" % "sbt-ci-release-early" % "2.0.17")
+addSbtPlugin("io.shiftleft" % "sbt-ci-release-early" % <version>)
