@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-java@v2
       - run: git tag
       - run: sbt version
+      - run: sbt isSnapshot
       - name: Release packages (tagged)
         run: sbt clean ci-release
         env:
