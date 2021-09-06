@@ -3,9 +3,7 @@ name: Build
 on:
   push:
     tags: ['v*']
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
 
 jobs:
   Test:
@@ -23,6 +21,13 @@ jobs:
         python-version: 3.9
     - name: Install python dependencies
       run: python -m pip install -r requirements.txt
+    - name: Chaching
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.sbt
+          ~/.coursier
+        key: ${{ runner.os }}-sbt-${{ hashfiles('**/build.sbt') }}
     - name: Run test and coverage
       run: sbt clean coverage +test coverageReport
     - name: Publish on Codacy
@@ -30,14 +35,6 @@ jobs:
       with:
         project-token: ${{ secrets.CODACY_API_TOKEN }}
         coverage-reports: target/scala-2.13/coverage-report/cobertura.xml
-
-  #Github-Release:
-  #  runs-on: ubuntu-latest
-  #  needs: [Test]
-    #if: startsWith(github.ref, 'refs/tags/v') #&& github.ref == 'refs/heads/main' && github.event_name == 'push'
-  #  steps:
-  #  - name: Create a release
-  #   uses: softprops/action-gh-release@v1
 
   Publish:
     runs-on: ubuntu-latest
@@ -49,6 +46,13 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
         uses: actions/setup-java@v2
+      - name: Chaching
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.sbt
+            ~/.coursier
+          key: ${{ runner.os }}-sbt-${{ hashfiles('**/build.sbt') }}
       - name: Release packages
         run: sbt clean ciReleaseTagNextVersion ciRelease
         env:
@@ -67,9 +71,24 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
         uses: actions/setup-java@v2
+      - name: Chaching
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.sbt
+            ~/.coursier
+          key: ${{ runner.os }}-sbt-${{ hashfiles('**/build.sbt') }}
       - name: Make site and scala doc
         run: sbt makeSite
       - name: Publish site
         run: sbt publishToGitHubPages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  Github-Release:
+    runs-on: ubuntu-latest
+    needs: [Test]
+    if: github.event_name == 'push'
+    steps:
+      - name: Create a release
+        uses: softprops/action-gh-release@v1
