@@ -21,13 +21,6 @@ jobs:
         python-version: 3.9
     - name: Install python dependencies
       run: python -m pip install -r requirements.txt
-    - name: Chaching
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.sbt
-          ~/.coursier
-        key: ${{ runner.os }}-sbt-${{ hashfiles('**/build.sbt') }}
     - name: Run test and coverage
       run: sbt clean coverage +test coverageReport
     - name: Publish on Codacy
@@ -46,13 +39,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
         uses: actions/setup-java@v2
-      - name: Chaching
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.sbt
-            ~/.coursier
-          key: ${{ runner.os }}-sbt-${{ hashfiles('**/build.sbt') }}
       - name: Release packages
         run: sbt clean ciReleaseTagNextVersion ciRelease
         env:
@@ -71,13 +57,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
         uses: actions/setup-java@v2
-      - name: Chaching
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.sbt
-            ~/.coursier
-          key: ${{ runner.os }}-sbt-${{ hashfiles('**/build.sbt') }}
       - name: Make site and scala doc
         run: sbt makeSite
       - name: Publish site
