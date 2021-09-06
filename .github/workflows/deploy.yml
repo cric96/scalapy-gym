@@ -18,6 +18,8 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
         uses: actions/setup-java@v2
+      - run: git tag
+      - run: sbt version
       - name: Release packages (tagged)
         run: sbt clean ci-release
         env:
