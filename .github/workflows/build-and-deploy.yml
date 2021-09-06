@@ -87,7 +87,7 @@ jobs:
 
   Github-Release:
     runs-on: ubuntu-latest
-    needs: [Test]
+    needs: [ Publish ]
     if: github.event_name == 'push'
     steps:
       - name: Create a release
