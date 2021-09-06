@@ -3,6 +3,7 @@ name: Deploy
 on:
   workflow_run:
     workflows: [ "Build" ]
+    branches: [ main ]
     types: [ completed ]
 
 jobs:
@@ -18,7 +19,6 @@ jobs:
           distribution: 'adopt'
         uses: actions/setup-java@v2
       - name: Release packages (tagged)
-        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         run: sbt clean ci-release
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}

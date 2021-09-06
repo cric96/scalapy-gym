@@ -23,10 +23,14 @@ jobs:
       run: python -m pip install -r requirements.txt
     - name: Run test and coverage
       run: sbt clean coverage +test coverageReport
+    ### Release part
     - name: Publish on Codacy
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       uses: codacy/codacy-coverage-reporter-action@v1
       with:
         project-token: ${{ secrets.CODACY_API_TOKEN }}
         coverage-reports: target/scala-2.13/coverage-report/cobertura.xml
     - name: Tag release
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       run: sbt ciReleaseTagNextVersion
+    ### If completed, this workflow trigger deploy.yaml
