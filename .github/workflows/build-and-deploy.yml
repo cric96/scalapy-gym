@@ -50,7 +50,7 @@ jobs:
           distribution: 'adopt'
         uses: actions/setup-java@v2
       - name: Release packages
-        run: sbt clean ci-release
+        run: sbt clean ciReleaseTagNextVersion ciRelease
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.PGP_SECRET }}

@@ -1,5 +1,6 @@
 name := "scalapy-gym"
 // For publish setting
+enablePlugins(GitVersioning)
 inThisBuild(
   List(
     organization           := "io.github.cric96",
@@ -13,6 +14,12 @@ inThisBuild(
         "Gianluca Aguzzi",
         "gianluca.aguzzi@studio.unibo.it",
         url("https://cric96.github.io/")
+      )
+    ),
+    scmInfo := Some(
+      ScmInfo(
+        url("https://github.com/cric96/scalapy-gym"),
+        "scm:git:git@github.com:cric96/scalapy-gym.git"
       )
     )
   )
@@ -57,6 +64,5 @@ javaOptions += s"-Djna.library.path=$pythonLibsDir"
 enablePlugins(SiteScaladocPlugin)
 
 // Gh pages publish
-//enablePlugins(GhpagesPlugin)
 enablePlugins(GitHubPagesPlugin)
 gitHubPagesSiteDir := baseDirectory.value / "target/site"
