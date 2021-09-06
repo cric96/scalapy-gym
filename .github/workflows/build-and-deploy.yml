@@ -44,7 +44,7 @@ jobs:
       - name: Install PGP dependecies
         run: sudo apt update && sudo apt install -y gnupg
       - name: Export secret
-      - run: echo $PGP_SECRET | base64 --decode | gpg --batch --import
+        run: echo $PGP_SECRET | base64 --decode | gpg --batch --import
         env:
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
       - name: Release packages (tagged)
