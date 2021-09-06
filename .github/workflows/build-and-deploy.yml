@@ -31,7 +31,7 @@ jobs:
 
   Publish:
     runs-on: ubuntu-latest
-    needs: [Test]
+    needs: [ Test ]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -41,7 +41,7 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
         uses: actions/setup-java@v2
-      - name: Release packages (non tagged)
+      - name: Release packages (tagged)
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         run: sbt clean ciRelease
         env:
@@ -49,7 +49,7 @@ jobs:
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-      - name: Release packages (tagged)
+      - name: Release packages (non tagged)
         if: ${{ github.ref == 'refs/heads/main' }}
         run: sbt clean ciReleaseTagNextVersion ciRelease
         env:
@@ -81,7 +81,9 @@ jobs:
     if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - run: |
+          git fetch --unshallow --tags
+          echo $?
+          git tag --list
       - name: Create a release
         uses: softprops/action-gh-release@v1
