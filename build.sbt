@@ -1,3 +1,5 @@
+import com.geirsson.CiReleasePlugin.{isTag, setupGpg}
+
 import scala.sys.env
 
 name := "scalapy-gym"
@@ -29,9 +31,9 @@ ThisBuild / scalaVersion       := scala213
 ThisBuild / crossScalaVersions := supportedScalaVersion
 ThisBuild / wartremoverErrors ++= Warts.all
 ThisBuild / idePackagePrefix   := Some("io.github.cric96")
-ThisBuild / isSnapshot         := !env.contains("CI") //if it is on CI, then it isn't a snapshot
-libraryDependencies            += "me.shadaj" %% "scalapy-core" % "0.5.0"
-libraryDependencies            += "com.lihaoyi" %% "utest" % "0.7.10" % "test"
+
+libraryDependencies += "me.shadaj" %% "scalapy-core" % "0.5.0"
+libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.10" % "test"
 
 testFrameworks += new TestFramework("utest.runner.Framework")
 fork           := true
