@@ -8,7 +8,7 @@ inThisBuild(
     licenses               := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
     sonatypeCredentialHost := Sonatype.sonatype01,
     sonatypeRepository     := s"https://${Sonatype.sonatype01}/service/local",
-    publishTo              := sonatypePublishToBundle.value,
+    //publishTo              := sonatypePublishTo.value,
     developers := List(
       Developer(
         "cric96",
@@ -19,6 +19,7 @@ inThisBuild(
     )
   )
 )
+ThisBuild / publishTo := sonatypePublishToBundle.value
 
 lazy val scala211 = "2.11.12"
 lazy val scala212 = "2.12.12"
