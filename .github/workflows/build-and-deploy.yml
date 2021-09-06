@@ -59,7 +59,7 @@ jobs:
 
   Microsite:
     runs-on: ubuntu-latest
-    needs: [ Github-Release ]
+    needs: [ Publish ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
