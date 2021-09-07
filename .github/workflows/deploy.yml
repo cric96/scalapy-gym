@@ -19,9 +19,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
         uses: actions/setup-java@v2
-      - run: git tag
-      - run: sbt version
-      - run: sbt isSnapshot
       - name: Release packages (tagged)
         run: sbt clean ci-release
         env:
@@ -30,7 +27,7 @@ jobs:
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           CI_COMMIT_TAG: "foo" #to force snapshot
-          CI_SONATYPE_RELEASE: "sonatypePrepare; sonatypeBundleUpload"
+          CI_SONATYPE_RELEASE: "sonatypePrepare; sonatypeBundleUpload; sonatypeClose"
   Microsite:
     runs-on: ubuntu-latest
     needs: [ Publish ]
