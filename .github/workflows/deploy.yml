@@ -27,7 +27,7 @@ jobs:
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           CI_COMMIT_TAG: "foo" #to force snapshot
-          CI_SONATYPE_RELEASE: "sonatypePrepare; sonatypeBundleUpload; sonatypeClose"
+          #CI_SONATYPE_RELEASE: "sonatypePrepare; sonatypeBundleUpload; sonatypeClose"
   Microsite:
     runs-on: ubuntu-latest
     needs: [ Publish ]
