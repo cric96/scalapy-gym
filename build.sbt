@@ -59,9 +59,10 @@ javaOptions += s"-Djna.library.path=$pythonLibsDir"
 
 // Site generation
 enablePlugins(SiteScaladocPlugin)
-enablePlugins(HugoPlugin)
-Hugo / sourceDirectory := sourceDirectory.value / "doc"
-baseURL in Hugo        := uri("https://cric96.github.io/scalapy-gym")
+//enablePlugins(HugoPlugin)
+// Hugo / sourceDirectory := sourceDirectory.value / "doc"
+
+// baseURL in Hugo := uri("https://cric96.github.io/scalapy-gym")
 // Gh pages publish
 //enablePlugins(GhpagesPlugin)
 enablePlugins(GitHubPagesPlugin)
