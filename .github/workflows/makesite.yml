@@ -19,7 +19,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest
+          hugo-version: 'latest'
       - name: Make site and scala doc
         run: sbt makeSite
       - name: Publish site
