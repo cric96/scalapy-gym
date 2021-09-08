@@ -33,6 +33,8 @@ jobs:
     needs: [ Publish ]
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Set up JDK 11
         with:
           java-version: '11'

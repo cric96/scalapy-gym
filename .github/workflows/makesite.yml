@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  push:
+
+
+jobs:
+  Microsite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Set up JDK 11
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+        uses: actions/setup-java@v2
+      - name: Make site and scala doc
+        run: sbt makeSite
+      - name: Publish site
+        run: sbt publishToGitHubPages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
