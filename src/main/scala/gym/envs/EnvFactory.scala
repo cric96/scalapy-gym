@@ -1,12 +1,12 @@
 package io.github.cric96
 package gym.envs
 
-import gym.Gym
+import gym.{ExternalType, Gym}
 import gym.core.Env
 import gym.spaces.{Box, Discrete, Tuple}
 
 /** a facade for some of the standard open ai environments */
-object EnvFactory {
+object EnvFactory extends App {
 
   object ToyText {
 
@@ -22,5 +22,21 @@ object EnvFactory {
     def rouletteV0(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("Roulette-v0")
   }
 
-  object ClassicControl
+  object ClassicControl {
+
+    def acrobotV1(): Env[Int, ExternalType.NumpyArray, Discrete, Box] =
+      Gym.make[Int, ExternalType.NumpyArray, Discrete, Box]("Acrobot-v1")
+
+    def cartPoleV1(): Env[Int, ExternalType.NumpyArray, Discrete, Box] =
+      Gym.make[Int, ExternalType.NumpyArray, Discrete, Box]("CartPole-v1")
+
+    def mountainCarV0(): Env[Int, ExternalType.NumpyArray, Discrete, Box] =
+      Gym.make[Int, ExternalType.NumpyArray, Discrete, Box]("MountainCar-v0")
+
+    def mountainCarContinuousV0(): Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
+      Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("MountainCarContinuous-v0")
+
+    def pendulumV0(): Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
+      Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("Pendulum-v0")
+  }
 }

@@ -1,8 +1,9 @@
 package io.github.cric96
 package gym.envs
 
+import gym.ExternalType
 import gym.core.Env
-import gym.envs.EnvFactory.ToyText
+import gym.envs.EnvFactory.{ClassicControl, ToyText}
 import gym.spaces.{Box, Discrete, Space, Tuple}
 
 import me.shadaj.scalapy.readwrite.{Reader, Writer}
@@ -56,6 +57,29 @@ object EnvFactoryTest extends TestSuite {
 
         test("rouletteV0 should be correctly typed") {
           assert(checkEnv[Int, Int, Discrete, Discrete](ToyText.rouletteV0()))
+        }
+      }
+
+      test("ClassicControl") {
+        test("acrobotV1 should be correctly typed") {
+          assert(checkEnv[Int, ExternalType.NumpyArray, Discrete, Box](ClassicControl.acrobotV1()))
+        }
+        test("cartPoleV1 should be correctly typed") {
+          assert(checkEnv[Int, ExternalType.NumpyArray, Discrete, Box](ClassicControl.cartPoleV1()))
+        }
+        test("mountainCarV0 should be correctly typed") {
+          assert(checkEnv[Int, ExternalType.NumpyArray, Discrete, Box](ClassicControl.mountainCarV0()))
+        }
+
+        test("mountainCarContinuousV0 should be correctly typed") {
+          assert(
+            checkEnv[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box](
+              ClassicControl.mountainCarContinuousV0()
+            )
+          )
+        }
+        test("pendulumV0 should be correctly typed") {
+          assert(checkEnv[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box](ClassicControl.pendulumV0()))
         }
       }
     }
