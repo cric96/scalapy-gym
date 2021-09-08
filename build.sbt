@@ -1,8 +1,10 @@
-import com.geirsson.CiReleasePlugin.{isTag, setupGpg}
-
-import scala.sys.env
-
+import scala.sys.process._
 name := "scalapy-gym"
+// Plugins
+enablePlugins(GitHubPagesPlugin)
+enablePlugins(SiteScaladocPlugin)
+enablePlugins(GitVersioning)
+//enablePlugins(HugoPlugin)
 // For publish setting
 inThisBuild(
   List(
@@ -21,7 +23,6 @@ inThisBuild(
     )
   )
 )
-enablePlugins(GitVersioning)
 lazy val scala211 = "2.11.12"
 lazy val scala212 = "2.12.12"
 lazy val scala213 = "2.13.6"
@@ -40,8 +41,6 @@ fork           := true
 
 // Python integration
 
-import scala.sys.process._
-
 lazy val pythonLdFlags = {
   val withoutEmbed = "python3-config --ldflags".!!
   if (withoutEmbed.contains("-lpython")) {
@@ -56,14 +55,9 @@ lazy val pythonLibsDir =
   pythonLdFlags.find(_.startsWith("-L")).get.drop("-L".length)
 
 javaOptions += s"-Djna.library.path=$pythonLibsDir"
-
+// Todo to fix
 // Site generation
-enablePlugins(SiteScaladocPlugin)
-//enablePlugins(HugoPlugin)
 // Hugo / sourceDirectory := sourceDirectory.value / "doc"
-
 // baseURL in Hugo := uri("https://cric96.github.io/scalapy-gym")
 // Gh pages publish
-//enablePlugins(GhpagesPlugin)
-enablePlugins(GitHubPagesPlugin)
 gitHubPagesSiteDir := baseDirectory.value / "target/site"
