@@ -9,7 +9,8 @@ A [ScalaPy](https://scalapy.dev/) Facade for OpenAI Gym!
 |---|---|
 | ![Build](https://github.com/cric96/scalapy-gym/actions/workflows/build.yml/badge.svg)  |  ![Build](https://github.com/cric96/scalapy-gym/actions/workflows/build.yml/badge.svg?branch=develop) |
 ## Links
-[![Scala Doc](https://img.shields.io/badge/-Scala%20doc-red?logo=scala)](https://cric96.github.io/scalapy-gym/latest/api/)
+
+[![Scala Doc](https://javadoc.io/badge2/io.github.cric96/scalapy-gym_2.13/scaladoc.svg?color=red)](https://javadoc.io/doc/io.github.cric96/scalapy-gym_2.13)
 
 ## What this project supports
 The main aim of this facade consist in using the basic environment describe in [OpenAI Gym](http://gym.openai.com/envs/#classic_control).
