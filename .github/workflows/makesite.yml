@@ -30,7 +30,7 @@ jobs:
       - name: Build Hugo
         run: cd src/doc/; hugo -d ../hugo -b https://cric96.github.io/scalapy-gym
       - name: Move hugo to taget
-        run: mv src/hugo/* target/site/*
+        run: mv src/hugo/* target/site/
       - name: Publish site
         run: sbt publishToGitHubPages
         env:
