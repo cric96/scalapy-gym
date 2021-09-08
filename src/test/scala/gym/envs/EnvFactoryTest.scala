@@ -1,11 +1,11 @@
 package io.github.cric96
 package gym.envs
 
+import gym.ExternalType
 import gym.core.Env
 import gym.envs.EnvFactory.{ClassicControl, ToyText}
 import gym.spaces.{Box, Discrete, Space, Tuple}
 
-import io.github.cric96.gym.ExternalType
 import me.shadaj.scalapy.readwrite.{Reader, Writer}
 import utest.{TestSuite, Tests, test}
 
