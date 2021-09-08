@@ -117,3 +117,6 @@ hs_err_pid*
 openai/
 
 # End of https://www.toptal.com/developers/gitignore/api/scala,sbt,intellij+all
+
+# Hugo
+src/doc/public
