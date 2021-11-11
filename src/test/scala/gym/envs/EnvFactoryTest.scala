@@ -10,7 +10,7 @@ import gym.spaces.{Box, Discrete, Space, Tuple}
 import me.shadaj.scalapy.readwrite.{Reader, Writer}
 import utest.{TestSuite, Tests, test}
 
-import scala.util.Try
+import scala.util.{Failure, Try}
 
 object EnvFactoryTest extends TestSuite {
 
@@ -24,11 +24,16 @@ object EnvFactoryTest extends TestSuite {
         observationReader: Reader[O],
         spaceReader: Reader[AS[A]],
         obsReader: Reader[OS[O]]
-    ): Boolean =
-      (for {
+    ): Boolean = {
+      val result = for {
         initState <- Try(env.reset())
         observation <- Try(env.step(env.actionSpace.sample()).observation)
-      } yield (initState, observation)).isSuccess
+      } yield (initState, observation)
+      result.recoverWith { exc =>
+        println(exc.getMessage);
+        Failure(exc)
+      }.isSuccess
+    }
 
     test("EnvFactory") {
       test("ToyText") {
