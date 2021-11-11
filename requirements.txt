@@ -1,4 +1,16 @@
+Box2D==2.3.2
+box2d-py==2.3.8
+cffi==1.15.0
 cloudpickle==1.6.0
+Cython==0.29.24
+glfw==2.4.0
 gym==0.19.0
+imageio==2.10.3
+lockfile==0.12.2
 numpy==1.21.2
+opencv-python==4.5.4.58
+Pillow==8.4.0
+pycparser==2.21
+pyglet==1.5.21
 scipy==1.7.1
+six==1.16.0

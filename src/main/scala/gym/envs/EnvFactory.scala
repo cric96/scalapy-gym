@@ -43,4 +43,22 @@ object EnvFactory {
     def pendulumV0(): Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
       Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("Pendulum-v0")
   }
+
+  object Box2D {
+
+    def bipedalWalkerV3(): Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Discrete, Box] =
+      Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Discrete, Box]("BipedalWalker-v3")
+
+    def bipedalWalkerHardcoreV3: Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
+      Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("BipedalWalkerHardcore-v3")
+
+    def carRacingV0: Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
+      Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("CarRacing-v0")
+
+    def lunarLanderV2: Env[Int, ExternalType.NumpyArray, Discrete, Box] =
+      Gym.make[Int, ExternalType.NumpyArray, Discrete, Box]("LunarLander-v2")
+
+    def LunarLanderContinuousV2: Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
+      Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("LunarLanderContinuous-v2")
+  }
 }
