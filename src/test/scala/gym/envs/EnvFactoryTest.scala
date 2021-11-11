@@ -1,7 +1,7 @@
 package io.github.cric96
 package gym.envs
 
-import gym.{ExternalType, Gym}
+import gym.ExternalType
 import gym.ExternalType.NumpyArray
 import gym.core.Env
 import gym.envs.EnvFactory.{Box2D, ClassicControl, ToyText}
@@ -16,6 +16,7 @@ object EnvFactoryTest extends TestSuite {
 
   @SuppressWarnings(Array("org.wartremover.warts.Nothing")) //because of test frame
   val tests = Tests {
+    @SuppressWarnings(Array("org.wartremover.warts.Any", "org.wartremover.warts.DefaultArguments")) //because of CI
     def checkEnv[A, O, AS[a] <: Space[a], OS[o] <: Space[o]](
         env: Env[A, O, AS, OS],
         onCI: Boolean = true
@@ -26,7 +27,7 @@ object EnvFactoryTest extends TestSuite {
         spaceReader: Reader[AS[A]],
         obsReader: Reader[OS[O]]
     ): Boolean = {
-      val ci = System.getenv("CI")
+      val ci = System.getenv().containsKey("CI")
       val result = for {
         initState <- Try(env.reset())
         observation <- Try(env.step(env.actionSpace.sample()).observation)
@@ -34,10 +35,10 @@ object EnvFactoryTest extends TestSuite {
       env.close()
       result.recoverWith { case exc =>
         println(exc.getMessage)
-        if (onCI) { Failure(exc) }
+        if (onCI && ci) { Failure(exc) }
         else {
           println("Skip..")
-          Try {}
+          Try()
         }
       }.isSuccess
     }
