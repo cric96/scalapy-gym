@@ -29,6 +29,7 @@ object EnvFactoryTest extends TestSuite {
         initState <- Try(env.reset())
         observation <- Try(env.step(env.actionSpace.sample()).observation)
       } yield (initState, observation)
+      env.close()
       result.recoverWith { case exc =>
         println(exc.getMessage);
         Failure(exc)
