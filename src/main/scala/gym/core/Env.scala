@@ -26,19 +26,19 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     * @return the open ai action space
     */
   def actionSpace(implicit reader: Reader[ActionSpace[Action]]): ActionSpace[Action] =
-    me.action_space.as[ActionSpace[Action]]
+    pyThis.action_space.as[ActionSpace[Action]]
 
   /** python name: observation_space
     * @param reader type class needed to get the underlying python value
     * @return the open ai observation space
     */
   def observationSpace(implicit reader: Reader[ObservationSpace[Observation]]): ObservationSpace[Observation] =
-    me.observation_space.as[ObservationSpace[Observation]]
+    pyThis.observation_space.as[ObservationSpace[Observation]]
 
   /** python name: reward_range
     * @return the admissible reward range
     */
-  def rewardRange: (Double, Double) = me.reward_range.as[(Double, Double)]
+  def rewardRange: (Double, Double) = pyThis.reward_range.as[(Double, Double)]
 
   /** @param action refer to https://github.com/openai/gym/blob/master/gym/core.py
     * @param obs type class needed to get the underlying python value
@@ -46,7 +46,8 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     * @return a tuple with (observation, reward, done, info)
     */
   def step(action: Action)(implicit obs: Reader[Observation], wr: Writer[Action]): StepResponse[Observation] = {
-    val step: (Observation, Float, Boolean, py.Dynamic) = me.step(action).as[(Observation, Float, Boolean, py.Dynamic)]
+    val step: (Observation, Float, Boolean, py.Dynamic) =
+      pyThis.step(action).as[(Observation, Float, Boolean, py.Dynamic)]
     StepResponse.create(step)
   }
 
@@ -60,8 +61,8 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     * @return refer to https://github.com/openai/gym/blob/master/gym/core.py
     */
   def render(mode: String | StandardRenderMode = "human"): py.Any = mode.map(
-    leftMap = stringMode => me.render(stringMode),
-    rightMap = sealedMode => me.render(sealedMode.value)
+    leftMap = stringMode => pyThis.render(stringMode),
+    rightMap = sealedMode => pyThis.render(sealedMode.value)
   )
 
   /** refer to https://github.com/openai/gym/blob/master/gym/core.py */
@@ -72,8 +73,8 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     * @return refer to https://github.com/openai/gym/blob/master/gym/core.py
     */
   def seed(seed: Int | Option[Int] = None): py.Any = seed.map(
-    leftMap = seed => me.seed(seed),
-    rightMap = seed => seed.fold(me.seed())(seed => me.seed(seed))
+    leftMap = seed => pyThis.seed(seed),
+    rightMap = seed => seed.fold(pyThis.seed())(seed => pyThis.seed(seed))
   )
 }
 
