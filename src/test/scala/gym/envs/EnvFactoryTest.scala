@@ -31,7 +31,7 @@ object EnvFactoryTest extends TestSuite {
       } yield (initState, observation)
       env.close()
       result.recoverWith { case exc =>
-        println(exc.getMessage);
+        println(exc.getMessage)
         Failure(exc)
       }.isSuccess
     }
