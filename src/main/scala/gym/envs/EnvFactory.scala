@@ -58,7 +58,7 @@ object EnvFactory {
     def lunarLanderV2: Env[Int, ExternalType.NumpyArray, Discrete, Box] =
       Gym.make[Int, ExternalType.NumpyArray, Discrete, Box]("LunarLander-v2")
 
-    def LunarLanderContinuousV2: Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
+    def lunarLanderContinuousV2: Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
       Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("LunarLanderContinuous-v2")
   }
 }
