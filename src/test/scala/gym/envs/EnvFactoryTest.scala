@@ -1,9 +1,10 @@
 package io.github.cric96
 package gym.envs
 
-import gym.ExternalType
+import gym.{ExternalType, Gym}
+import gym.ExternalType.NumpyArray
 import gym.core.Env
-import gym.envs.EnvFactory.{ClassicControl, ToyText}
+import gym.envs.EnvFactory.{Box2D, ClassicControl, ToyText}
 import gym.spaces.{Box, Discrete, Space, Tuple}
 
 import me.shadaj.scalapy.readwrite.{Reader, Writer}
@@ -64,9 +65,11 @@ object EnvFactoryTest extends TestSuite {
         test("acrobotV1 should be correctly typed") {
           assert(checkEnv[Int, ExternalType.NumpyArray, Discrete, Box](ClassicControl.acrobotV1()))
         }
+
         test("cartPoleV1 should be correctly typed") {
           assert(checkEnv[Int, ExternalType.NumpyArray, Discrete, Box](ClassicControl.cartPoleV1()))
         }
+
         test("mountainCarV0 should be correctly typed") {
           assert(checkEnv[Int, ExternalType.NumpyArray, Discrete, Box](ClassicControl.mountainCarV0()))
         }
@@ -78,8 +81,31 @@ object EnvFactoryTest extends TestSuite {
             )
           )
         }
+
         test("pendulumV0 should be correctly typed") {
           assert(checkEnv[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box](ClassicControl.pendulumV0()))
+        }
+      }
+
+      test("Box2D") {
+        test("bipedalWalkerV3 should be correctly typed") {
+          assert(checkEnv[ExternalType.NumpyArray, ExternalType.NumpyArray, Discrete, Box](Box2D.bipedalWalkerV3()))
+        }
+
+        test("bipedalWalkerHardcoreV3 should be correctly typed") {
+          assert(checkEnv[NumpyArray, NumpyArray, Box, Box](Box2D.bipedalWalkerHardcoreV3))
+        }
+
+        test("carRacingV0 should be correctly typed") {
+          assert(checkEnv[NumpyArray, NumpyArray, Box, Box](Box2D.carRacingV0))
+        }
+
+        test("lunarLanderV2 should be correctly typed") {
+          assert(checkEnv[Int, NumpyArray, Discrete, Box](Box2D.lunarLanderV2))
+        }
+
+        test("lunarLanderV2 should be correctly typed") {
+          assert(checkEnv[NumpyArray, NumpyArray, Box, Box](Box2D.lunarLanderContinuousV2))
         }
       }
     }

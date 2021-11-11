@@ -6,7 +6,7 @@ import gym.core.Env
 import gym.spaces.{Box, Discrete, Tuple}
 
 /** a facade for some of the standard open ai environments */
-object EnvFactory extends App {
+object EnvFactory {
 
   object ToyText {
 
@@ -16,9 +16,13 @@ object EnvFactory extends App {
 
     def frozenLakeV18x8(): Env[Int, Int, Discrete, Discrete] =
       Gym.make[Int, Int, Discrete, Discrete]("FrozenLake8x8-v1")
+
     def guessingGameV0(): Env[Float, Int, Box, Discrete] = Gym.make[Float, Int, Box, Discrete]("GuessingGame-v0")
+
     def hotterColderV0(): Env[Float, Int, Box, Discrete] = Gym.make[Float, Int, Box, Discrete]("HotterColder-v0")
+
     def nChainV0(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("NChain-v0")
+
     def rouletteV0(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("Roulette-v0")
   }
 
@@ -38,5 +42,23 @@ object EnvFactory extends App {
 
     def pendulumV0(): Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
       Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("Pendulum-v0")
+  }
+
+  object Box2D {
+
+    def bipedalWalkerV3(): Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Discrete, Box] =
+      Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Discrete, Box]("BipedalWalker-v3")
+
+    def bipedalWalkerHardcoreV3: Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
+      Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("BipedalWalkerHardcore-v3")
+
+    def carRacingV0: Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
+      Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("CarRacing-v0")
+
+    def lunarLanderV2: Env[Int, ExternalType.NumpyArray, Discrete, Box] =
+      Gym.make[Int, ExternalType.NumpyArray, Discrete, Box]("LunarLander-v2")
+
+    def lunarLanderContinuousV2: Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
+      Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("LunarLanderContinuous-v2")
   }
 }

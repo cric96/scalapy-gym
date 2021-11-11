@@ -120,3 +120,4 @@ openai/
 
 # Hugo
 src/doc/public
+venv/
