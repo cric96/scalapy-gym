@@ -1,7 +1,7 @@
 pull_request_rules:
   - name: assign and label scala-steward's PRs
     conditions:
-      - author=github-actions[bot]
+      - author=cric96
     actions:
       assign:
         users: [cric96]
@@ -9,7 +9,7 @@ pull_request_rules:
         add: [dependency-update]
   - name: merge scala-steward's PRs
     conditions:
-      - author=github-actions[bot]
+      - author=cric96
       - status-success=Build
     actions:
       merge:
