@@ -13,9 +13,9 @@ import me.shadaj.scalapy.py.|
   */
 @py.native
 trait Box[Action] extends Space[Action] with PythonInternals {
-  val high: ExternalType.NumpyArray = py.native
-  val low: ExternalType.NumpyArray = py.native
-  val shape: ExternalType.NumpyArray = py.native
+  val high: ExternalType.NumpyArray = pyThis.high
+  val low: ExternalType.NumpyArray = pyThis.low
+  val shape: ExternalType.NumpyArray = pyThis.shape
   /** python name: bounded_below */
   def boundedBelow: ExternalType.NumpyArray = pyThis.bounded_below.as[ExternalType.NumpyArray]
   /** python name: bounded_above */
