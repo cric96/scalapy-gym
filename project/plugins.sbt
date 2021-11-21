@@ -7,7 +7,7 @@ addSbtPlugin("com.dwijnand" % "sbt-dynver" % "4.1.1")
 // Site generator
 addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.4.1")
 // Publish pages
-addSbtPlugin("io.kevinlee" % "sbt-github-pages" % "0.8.0")
+addSbtPlugin("io.kevinlee" % "sbt-github-pages" % "0.8.1")
 // Coverage
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.8.2")
 // Sonatype upload
