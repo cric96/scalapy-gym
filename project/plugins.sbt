@@ -1,7 +1,7 @@
 addSbtPlugin("org.jetbrains" % "sbt-ide-settings" % "1.1.0")
 // Linter
 addSbtPlugin("org.wartremover" % "sbt-wartremover" % "2.4.16")
-addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.5")
+addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.6")
 // Publish helper
 addSbtPlugin("com.dwijnand" % "sbt-dynver" % "4.1.1")
 // Site generator
