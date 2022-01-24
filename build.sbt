@@ -34,7 +34,7 @@ ThisBuild / wartremoverErrors ++= Warts.all
 ThisBuild / idePackagePrefix   := Some("io.github.cric96")
 
 libraryDependencies += "me.shadaj" %% "scalapy-core" % "0.5.1"
-libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.10" % "test"
+libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.11" % "test"
 
 testFrameworks += new TestFramework("utest.runner.Framework")
 fork           := true
