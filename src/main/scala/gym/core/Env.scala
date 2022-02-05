@@ -13,19 +13,17 @@ import me.shadaj.scalapy.readwrite.Writer
 
 /** From https://github.com/openai/gym/blob/master/gym/core.py Env is a facade that adds types to standard open-ai
   * environments.
-  * @tparam Action
+  * @tparam A
   *   the type of admissible action for this environment, e.g. Int, py.Any, ...
-  * @tparam Observation
+  * @tparam O
   *   the type of admissible observation for this environment, e.g. Int, py.Any, ...
-  * @tparam ActionSpace
+  * @tparam AS
   *   the type of the space associate to actions, e.g. Space, Box, Dict, Tuple, ..
-  * @tparam ObservationSpace
+  * @tparam OS
   *   the type of the space associate to actions, e.g. Space, Box, Dict, Tuple, ..
   */
 @py.native
-trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <: Space[O]]
-    extends py.Object
-    with PythonInternals {
+trait Env[A, O, AS[A] <: Space[A], OS[O] <: Space[O]] extends py.Object with PythonInternals {
 
   /** python name: action_space
     * @param reader
@@ -33,8 +31,8 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     * @return
     *   the open ai action space
     */
-  def actionSpace(implicit reader: Reader[ActionSpace[Action]]): ActionSpace[Action] =
-    pyThis.action_space.as[ActionSpace[Action]]
+  def actionSpace(implicit reader: Reader[AS[A]]): AS[A] =
+    pyThis.action_space.as[AS[A]]
 
   /** python name: observation_space
     * @param reader
@@ -42,8 +40,8 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     * @return
     *   the open ai observation space
     */
-  def observationSpace(implicit reader: Reader[ObservationSpace[Observation]]): ObservationSpace[Observation] =
-    pyThis.observation_space.as[ObservationSpace[Observation]]
+  def observationSpace(implicit reader: Reader[OS[O]]): OS[O] =
+    pyThis.observation_space.as[OS[O]]
 
   /** python name: reward_range
     * @return
@@ -60,9 +58,9 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     * @return
     *   a tuple with (observation, reward, done, info)
     */
-  def step(action: Action)(implicit obs: Reader[Observation], wr: Writer[Action]): StepResponse[Observation] = {
-    val step: (Observation, Float, Boolean, py.Dynamic) =
-      pyThis.step(action).as[(Observation, Float, Boolean, py.Dynamic)]
+  def step(action: A)(implicit obs: Reader[O], wr: Writer[A]): StepResponse[O] = {
+    val step: (O, Float, Boolean, py.Dynamic) =
+      pyThis.step(action).as[(O, Float, Boolean, py.Dynamic)]
     StepResponse.create(step)
   }
 
@@ -71,7 +69,7 @@ trait Env[Action, Observation, ActionSpace[A] <: Space[A], ObservationSpace[O] <
     * @return
     *   refer to https://github.com/openai/gym/blob/master/gym/core.py
     */
-  def reset()(implicit obs: Reader[Observation]): Observation = py.native
+  def reset()(implicit obs: Reader[O]): O = py.native
 
   @SuppressWarnings(Array("org.wartremover.warts.DefaultArguments")) // because of python interface
   /** @param mode

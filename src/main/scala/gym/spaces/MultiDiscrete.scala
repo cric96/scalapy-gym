@@ -5,4 +5,4 @@ import me.shadaj.scalapy.py
 
 //TODO
 @py.native
-trait MultiDiscrete[Action] extends Space[Action]
+trait MultiDiscrete[A] extends Space[A]

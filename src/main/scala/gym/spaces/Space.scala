@@ -6,18 +6,18 @@ import me.shadaj.scalapy.readwrite.Reader
 import me.shadaj.scalapy.readwrite.Writer
 
 /** refer to https://github.com/openai/gym/blob/master/gym/spaces/space.py
-  * @tparam Action
+  * @tparam A
   *   the type of admissible action for this environment, e.g. Int, py.Any, ...
   */
 @py.native
-trait Space[Action] extends py.Object {
+trait Space[A] extends py.Object {
 
   /** @param reader
     *   type class needed to get the underlying python value
     * @return
     *   refer to https://github.com/openai/gym/blob/master/gym/spaces/space.py
     */
-  def sample()(implicit reader: Reader[Action]): Action = py.native
+  def sample()(implicit reader: Reader[A]): A = py.native
 
   /** @param action
     *   refer to https://github.com/openai/gym/blob/master/gym/spaces/space.py
@@ -25,6 +25,6 @@ trait Space[Action] extends py.Object {
     * @return
     *   refer to https://github.com/openai/gym/blob/master/gym/spaces/space.py
     */
-  def contains(action: Action)(implicit wr: Writer[Action]): Boolean = py.native
+  def contains(action: A)(implicit wr: Writer[A]): Boolean = py.native
 
 }

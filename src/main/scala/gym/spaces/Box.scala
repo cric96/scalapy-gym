@@ -13,11 +13,11 @@ import me.shadaj.scalapy.py.|
   *   the type of admissible action for this environment, e.g. Int, py.Any, ...
   */
 @py.native
-trait Box[Action] extends Space[Action] with PythonInternals {
+trait Box[A] extends Space[A] with PythonInternals {
 
-  val high: ExternalType.NumpyArray  = pyThis.high
+  val high: ExternalType.NumpyArray = pyThis.high
 
-  val low: ExternalType.NumpyArray   = pyThis.low
+  val low: ExternalType.NumpyArray = pyThis.low
 
   val shape: ExternalType.NumpyArray = pyThis.shape
 
