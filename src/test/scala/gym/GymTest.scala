@@ -4,13 +4,17 @@ package gym
 import gym.core.Env
 import gym.spaces.Discrete
 
-import utest.{TestSuite, Tests, test}
+import utest.TestSuite
+import utest.Tests
+import utest.test
 
 import scala.util.Try
 
 object GymTest extends TestSuite {
 
-  @SuppressWarnings(Array("org.wartremover.warts.Nothing")) //because of test frame
+  val baseEnv = "FrozenLake-v1"
+
+  @SuppressWarnings(Array("org.wartremover.warts.Nothing")) // because of test frame
   val tests: Tests = Tests {
     test("Gym should") {
       test("create envs untyped") {
@@ -20,7 +24,7 @@ object GymTest extends TestSuite {
       }
 
       test("create a typed env") {
-        val env = Gym.make[Int, Int, Discrete, Discrete]("FrozenLake-v1")
+        val env = Gym.make[Int, Int, Discrete, Discrete](baseEnv)
         val eitherInt = Try(env.actionSpace.sample())
           .flatMap(_ => Try(env.observationSpace.sample()))
           .isSuccess
@@ -28,7 +32,7 @@ object GymTest extends TestSuite {
       }
 
       test("create a generic env") {
-        val env = Gym.makeGenericEnv[Int, Int, Discrete, Discrete, Env]("FrozenLake-v1")
+        val env = Gym.makeGenericEnv[Int, Int, Discrete, Discrete, Env](baseEnv)
         val eitherInt = Try(env.actionSpace.sample())
           .flatMap(_ => Try(env.observationSpace.sample()))
           .isSuccess
@@ -36,7 +40,7 @@ object GymTest extends TestSuite {
       }
 
       test("create generic spaces env") {
-        val env = Gym.makeGenericSpaces[Discrete, Discrete]("FrozenLake-v1")
+        val env = Gym.makeGenericSpaces[Discrete, Discrete](baseEnv)
         val eitherInt = Try(env.actionSpace.sample())
           .flatMap(_ => Try(env.observationSpace.sample()))
           .isSuccess
@@ -50,7 +54,7 @@ object GymTest extends TestSuite {
       }
 
       test("thrown exception if type is wrong") {
-        val env = Gym.make[String, Int, Discrete, Discrete]("FrozenLake-v1")
+        val env = Gym.make[String, Int, Discrete, Discrete](baseEnv)
         val eitherInt = Try(env.actionSpace.sample())
           .flatMap(_ => Try(env.observationSpace.sample()))
           .isFailure
@@ -58,4 +62,5 @@ object GymTest extends TestSuite {
       }
     }
   }
+
 }
