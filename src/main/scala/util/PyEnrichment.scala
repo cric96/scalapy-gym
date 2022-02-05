@@ -8,7 +8,7 @@ object PyEnrichment {
 
   implicit class RichPyAny(val data: py.Any) {
 
-    def ?==(other: py.Any): Boolean = py"$data == $other".as[Boolean]
+    def pythonEquals(other: py.Any): Boolean = py"$data == $other".as[Boolean]
 
   }
 

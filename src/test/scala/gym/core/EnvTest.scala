@@ -6,18 +6,22 @@ import gym.envs.EnvFactory
 import gym.spaces.Discrete
 import util.PyEnrichment.RichPyAny
 
-import utest.{TestSuite, Tests, test}
+import utest.TestSuite
+import utest.Tests
+import utest.test
 
 import scala.util.Try
 
 object EnvTest extends TestSuite {
+
   val basicEnv: Env[Int, Int, Discrete, Discrete] = EnvFactory.ToyText.frozenLakeV1()
-  val aSeed: Int = 42
+
+  val aSeed: Int                                  = 42
 
   def progress(env: Env[Int, Int, Discrete, Discrete]): Env.StepResponse[Int] =
     env.step(basicEnv.actionSpace.sample())
 
-  @SuppressWarnings(Array("org.wartremover.warts.Nothing")) //because of test frame
+  @SuppressWarnings(Array("org.wartremover.warts.Nothing")) // because of test frame
   val tests: Tests = Tests {
     test("Env") {
       test("should return action space accordingly") {
@@ -48,9 +52,9 @@ object EnvTest extends TestSuite {
         assert {
           (for {
             basicRequest <- Try(basicEnv.seed())
-            withNumber <- Try(basicEnv.seed(aSeed))
-            withNone <- Try(basicEnv.seed(None))
-            withSome <- Try(basicEnv.seed(Some(aSeed)))
+            withNumber   <- Try(basicEnv.seed(aSeed))
+            withNone     <- Try(basicEnv.seed(None))
+            withSome     <- Try(basicEnv.seed(Some(aSeed)))
           } yield (basicRequest, withNumber, withNone, withSome)).isSuccess
         }
       }
@@ -70,19 +74,19 @@ object EnvTest extends TestSuite {
       test("should return the same seed with the same input") {
         val (first, second) = (basicEnv.seed(aSeed), basicEnv.seed(aSeed))
         assert {
-          first ?== second
+          first.pythonEquals(second)
         }
       }
 
       test("should update the world when step is called") {
-        val reset = basicEnv.reset()
+        val reset    = basicEnv.reset()
         val newState = progress(basicEnv)
         assert {
           (for {
             reward <- Try(newState.reward)
-            done <- Try(newState.done)
-            info <- Try(newState.info)
-            obs <- Try(newState.observation)
+            done   <- Try(newState.done)
+            info   <- Try(newState.info)
+            obs    <- Try(newState.observation)
           } yield (reward, done, info, obs)).isSuccess
         }
       }
@@ -103,10 +107,11 @@ object EnvTest extends TestSuite {
 
       test("StepResponse") {
         test("should work as tuple") {
-          val reset = basicEnv.reset()
+          val reset    = basicEnv.reset()
           val newState = progress(basicEnv)
         }
       }
     }
   }
+
 }
