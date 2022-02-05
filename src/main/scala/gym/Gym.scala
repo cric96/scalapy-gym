@@ -11,7 +11,7 @@ import me.shadaj.scalapy.readwrite.Reader
 @py.native
 object Gym extends py.StaticModule("gym") with GymMaker {
 
-  type E[A, B, AS[a] <: Space[a], OS[o] <: Space[o]] = Env[A, B, AS, OS]
+  type E[A, O, AS[a] <: Space[a], OS[o] <: Space[o]] = Env[A, O, , OS]
 
   def make[A, O, AS[a] <: Space[a], OS[o] <: Space[o]](name: String)(implicit
       obs: Reader[O],
