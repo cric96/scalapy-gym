@@ -1,9 +1,12 @@
 package io.github.cric96
 package gym.envs
 
-import gym.{ExternalType, Gym}
+import gym.ExternalType
+import gym.Gym
 import gym.core.Env
-import gym.spaces.{Box, Discrete, Tuple}
+import gym.spaces.Box
+import gym.spaces.Discrete
+import gym.spaces.Tuple
 
 /** a facade for some of the standard open ai environments */
 object EnvFactory {
@@ -12,6 +15,7 @@ object EnvFactory {
 
     def blackJackV0(): Env[Int, (Int, Int, Int), Discrete, Tuple] =
       Gym.make[Int, (Int, Int, Int), Discrete, Tuple]("Blackjack-v0")
+
     def frozenLakeV1(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("FrozenLake-v1")
 
     def frozenLakeV18x8(): Env[Int, Int, Discrete, Discrete] =
@@ -24,6 +28,7 @@ object EnvFactory {
     def nChainV0(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("NChain-v0")
 
     def rouletteV0(): Env[Int, Int, Discrete, Discrete] = Gym.make[Int, Int, Discrete, Discrete]("Roulette-v0")
+
   }
 
   object ClassicControl {
@@ -42,6 +47,7 @@ object EnvFactory {
 
     def pendulumV0(): Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
       Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("Pendulum-v0")
+
   }
 
   object Box2D {
@@ -60,5 +66,7 @@ object EnvFactory {
 
     def lunarLanderContinuousV2: Env[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box] =
       Gym.make[ExternalType.NumpyArray, ExternalType.NumpyArray, Box, Box]("LunarLanderContinuous-v2")
+
   }
+
 }

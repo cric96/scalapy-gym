@@ -33,11 +33,11 @@ object EnvFactoryTest extends TestSuite {
         observation <- Try(env.step(env.actionSpace.sample()).observation)
       } yield (initState, observation)
       env.close()
-      result.recoverWith { case exc =>
-        println(exc.getMessage)
+      result.recoverWith { case exc: Throwable =>
+        scribe.info(exc.getMessage)
         if (onCI && ci) { Failure(exc) }
         else {
-          println("Skip..")
+          scribe.info("Fail...")
           Try()
         }
       }.isSuccess

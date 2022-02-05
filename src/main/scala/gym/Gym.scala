@@ -10,6 +10,7 @@ import me.shadaj.scalapy.readwrite.Reader
 /** open ai gym module, refer to https://github.com/openai/gym/blob/master/gym/__init__.py */
 @py.native
 object Gym extends py.StaticModule("gym") with GymMaker {
+
   type E[A, B, AS[a] <: Space[a], OS[o] <: Space[o]] = Env[A, B, AS, OS]
 
   def make[A, O, AS[a] <: Space[a], OS[o] <: Space[o]](name: String)(implicit
@@ -19,4 +20,5 @@ object Gym extends py.StaticModule("gym") with GymMaker {
   ): Env[A, O, AS, OS] = py.native
 
   def envs: py.Dynamic = py.native
+
 }

@@ -9,19 +9,25 @@ import me.shadaj.scalapy.py
 import me.shadaj.scalapy.py.|
 
 /** refer to https://github.com/openai/gym/blob/master/gym/spaces/box.py
-  * @tparam Action the type of admissible action for this environment, e.g. Int, py.Any, ...
+  * @tparam Action
+  *   the type of admissible action for this environment, e.g. Int, py.Any, ...
   */
 @py.native
 trait Box[Action] extends Space[Action] with PythonInternals {
-  val high: ExternalType.NumpyArray = pyThis.high
-  val low: ExternalType.NumpyArray = pyThis.low
+
+  val high: ExternalType.NumpyArray  = pyThis.high
+
+  val low: ExternalType.NumpyArray   = pyThis.low
+
   val shape: ExternalType.NumpyArray = pyThis.shape
+
   /** python name: bounded_below */
   def boundedBelow: ExternalType.NumpyArray = pyThis.bounded_below.as[ExternalType.NumpyArray]
+
   /** python name: bounded_above */
   def boundedAbove: ExternalType.NumpyArray = pyThis.bounded_above.as[ExternalType.NumpyArray]
 
-  @SuppressWarnings(Array("org.wartremover.warts.DefaultArguments")) //because of python interface
+  @SuppressWarnings(Array("org.wartremover.warts.DefaultArguments")) // because of python interface
   /** python name: is_range
     * @param manner
     * @return
@@ -38,14 +44,19 @@ trait Box[Action] extends Space[Action] with PythonInternals {
 }
 
 object Box {
+
   /** utility union type for manner
-    * @param manner the underlying manner
+    * @param manner
+    *   the underlying manner
     */
   sealed abstract class BoundedManner(val manner: py.Any)
 
   object BoundedManner {
-    case object Both extends BoundedManner("both")
+
+    case object Both  extends BoundedManner("both")
     case object Below extends BoundedManner("below")
     case object Above extends BoundedManner("above")
+
   }
+
 }
