@@ -4,17 +4,18 @@ package gym.spaces
 import gym.core.Env
 import gym.envs.EnvFactory
 import gym.spaces.Box.BoundedManner
-
-import utest.{TestSuite, Tests, test}
-
 import scala.util.Try
+import utest.{test, Tests, TestSuite}
 
 object SpacesTest extends TestSuite {
+
   private val basicEnv: Env[Int, Int, Discrete, Discrete] = EnvFactory.ToyText.frozenLakeV1()
+
   private val boxSpace = EnvFactory.ToyText.hotterColderV0().actionSpace
+
   val space: Discrete[Int] = basicEnv.actionSpace
 
-  @SuppressWarnings(Array("org.wartremover.warts.Nothing")) //because of test frame
+  @SuppressWarnings(Array("org.wartremover.warts.Nothing")) // because of test frame
   val tests: Tests = Tests {
     test("Space") {
       test("sample should work accordingly") {
@@ -37,7 +38,7 @@ object SpacesTest extends TestSuite {
         assert {
           (for {
             high <- Try(boxSpace.high)
-            low <- Try(boxSpace.low)
+            low  <- Try(boxSpace.low)
           } yield (high, low)).isSuccess
         }
       }
@@ -45,7 +46,7 @@ object SpacesTest extends TestSuite {
         assert {
           (for {
             high <- Try(boxSpace.boundedAbove)
-            low <- Try(boxSpace.boundedBelow)
+            low  <- Try(boxSpace.boundedBelow)
           } yield (high, low)).isSuccess
         }
       }
@@ -61,4 +62,5 @@ object SpacesTest extends TestSuite {
       }
     }
   }
+
 }

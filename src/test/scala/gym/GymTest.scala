@@ -3,12 +3,10 @@ package gym
 
 import gym.core.Env
 import gym.spaces.Discrete
-
-import utest.TestSuite
-import utest.Tests
-import utest.test
-
 import scala.util.Try
+import utest.Tests
+import utest.TestSuite
+import utest.test
 
 object GymTest extends TestSuite {
 

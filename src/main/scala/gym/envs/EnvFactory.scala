@@ -1,12 +1,9 @@
 package io.github.cric96
 package gym.envs
 
-import gym.ExternalType
-import gym.Gym
+import gym.{ExternalType, Gym}
 import gym.core.Env
-import gym.spaces.Box
-import gym.spaces.Discrete
-import gym.spaces.Tuple
+import gym.spaces.{Box, Discrete, Tuple}
 
 /** a facade for some of the standard open ai environments */
 object EnvFactory {

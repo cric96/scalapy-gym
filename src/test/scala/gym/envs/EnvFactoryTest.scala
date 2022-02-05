@@ -1,22 +1,21 @@
 package io.github.cric96
 package gym.envs
 
+import me.shadaj.scalapy.readwrite.{Reader, Writer}
+
 import gym.ExternalType
 import gym.ExternalType.NumpyArray
 import gym.core.Env
 import gym.envs.EnvFactory.{Box2D, ClassicControl, ToyText}
 import gym.spaces.{Box, Discrete, Space, Tuple}
-
-import me.shadaj.scalapy.readwrite.{Reader, Writer}
-import utest.{TestSuite, Tests, test}
-
 import scala.util.{Failure, Try}
+import utest.{test, Tests, TestSuite}
 
 object EnvFactoryTest extends TestSuite {
 
-  @SuppressWarnings(Array("org.wartremover.warts.Nothing")) //because of test frame
+  @SuppressWarnings(Array("org.wartremover.warts.Nothing")) // because of test frame
   val tests = Tests {
-    @SuppressWarnings(Array("org.wartremover.warts.Any", "org.wartremover.warts.DefaultArguments")) //because of CI
+    @SuppressWarnings(Array("org.wartremover.warts.Any", "org.wartremover.warts.DefaultArguments")) // because of CI
     def checkEnv[A, O, AS[a] <: Space[a], OS[o] <: Space[o]](
         env: Env[A, O, AS, OS],
         onCI: Boolean = true
@@ -29,7 +28,7 @@ object EnvFactoryTest extends TestSuite {
     ): Boolean = {
       val ci = System.getenv().containsKey("CI")
       val result = for {
-        initState <- Try(env.reset())
+        initState   <- Try(env.reset())
         observation <- Try(env.step(env.actionSpace.sample()).observation)
       } yield (initState, observation)
       env.close()
@@ -125,4 +124,5 @@ object EnvFactoryTest extends TestSuite {
       }
     }
   }
+
 }

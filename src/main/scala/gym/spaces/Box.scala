@@ -1,12 +1,12 @@
 package io.github.cric96
 package gym.spaces
 
+import me.shadaj.scalapy.py
+import me.shadaj.scalapy.py.|
+
 import gym.ExternalType
 import gym.spaces.Box.BoundedManner
 import util.PythonInternals
-
-import me.shadaj.scalapy.py
-import me.shadaj.scalapy.py.|
 
 /** refer to https://github.com/openai/gym/blob/master/gym/spaces/box.py
   * @tparam Action

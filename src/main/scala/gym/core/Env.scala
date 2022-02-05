@@ -1,15 +1,13 @@
 package io.github.cric96
 package gym.core
 
-import gym.core.Env.StandardRenderMode
-import gym.core.Env.StepResponse
-import gym.spaces.Space
-import util.PythonInternals
-
 import me.shadaj.scalapy.py
 import me.shadaj.scalapy.py.|
-import me.shadaj.scalapy.readwrite.Reader
-import me.shadaj.scalapy.readwrite.Writer
+import me.shadaj.scalapy.readwrite.{Reader, Writer}
+
+import gym.core.Env.{StandardRenderMode, StepResponse}
+import gym.spaces.Space
+import util.PythonInternals
 
 /** From https://github.com/openai/gym/blob/master/gym/core.py Env is a facade that adds types to standard open-ai
   * environments.

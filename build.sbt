@@ -1,4 +1,5 @@
 import scala.sys.process._
+
 name := "scalapy-gym"
 // Plugins
 enablePlugins(GitHubPagesPlugin)
@@ -26,14 +27,18 @@ ThisBuild / scalaVersion       := scala213
 ThisBuild / crossScalaVersions := supportedScalaVersion
 ThisBuild / wartremoverErrors ++= Warts.all
 ThisBuild / idePackagePrefix   := Some("io.github.cric96")
+
 lazy val scala211 = "2.11.12"
+
 lazy val scala212 = "2.12.12"
+
 lazy val scala213 = "2.13.6"
+
 lazy val supportedScalaVersion = Seq(scala212, scala213)
 
-libraryDependencies += "me.shadaj" %% "scalapy-core" % "0.5.1"
-libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.11" % "test"
-libraryDependencies += "com.outr" %% "scribe" % "3.6.10"
+libraryDependencies += "me.shadaj"   %% "scalapy-core" % "0.5.1"
+libraryDependencies += "com.lihaoyi" %% "utest"        % "0.7.11" % "test"
+libraryDependencies += "com.outr"    %% "scribe"       % "3.6.10"
 
 testFrameworks += new TestFramework("utest.runner.Framework")
 fork           := true
@@ -52,5 +57,5 @@ lazy val pythonLdFlags = {
 lazy val pythonLibsDir =
   pythonLdFlags.find(_.startsWith("-L")).get.drop("-L".length)
 
-javaOptions += s"-Djna.library.path=$pythonLibsDir"
+javaOptions        += s"-Djna.library.path=$pythonLibsDir"
 gitHubPagesSiteDir := baseDirectory.value / "target/site"

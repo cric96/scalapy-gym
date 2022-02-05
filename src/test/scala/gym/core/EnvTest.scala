@@ -4,19 +4,17 @@ package gym.core
 import gym.core.Env.StandardRenderMode
 import gym.envs.EnvFactory
 import gym.spaces.Discrete
-import util.PyEnrichment.RichPyAny
-
-import utest.TestSuite
-import utest.Tests
-import utest.test
-
 import scala.util.Try
+import utest.Tests
+import utest.TestSuite
+import utest.test
+import util.PyEnrichment.RichPyAny
 
 object EnvTest extends TestSuite {
 
   val basicEnv: Env[Int, Int, Discrete, Discrete] = EnvFactory.ToyText.frozenLakeV1()
 
-  val aSeed: Int                                  = 42
+  val aSeed: Int = 42
 
   def progress(env: Env[Int, Int, Discrete, Discrete]): Env.StepResponse[Int] =
     env.step(basicEnv.actionSpace.sample())

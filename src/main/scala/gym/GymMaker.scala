@@ -1,11 +1,11 @@
 package io.github.cric96
 package gym
 
-import gym.core.Env
-import gym.spaces.Space
-
 import me.shadaj.scalapy.py
 import me.shadaj.scalapy.readwrite.Reader
+
+import gym.core.Env
+import gym.spaces.Space
 
 /** the shape for a gym module. It is inspired by https://github.com/openai/gym/blob/master/gym/__init__.py the scope of
   * this module is to make environments the key idea is that different python module can be reused with this interface,
