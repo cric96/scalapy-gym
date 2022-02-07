@@ -38,7 +38,7 @@ lazy val supportedScalaVersion = Seq(scala212, scala213)
 
 libraryDependencies += "me.shadaj"   %% "scalapy-core" % "0.5.1"
 libraryDependencies += "com.lihaoyi" %% "utest"        % "0.7.11" % "test"
-libraryDependencies += "com.outr"    %% "scribe"       % "3.6.10"
+libraryDependencies += "com.outr"    %% "scribe"       % "3.7.0"
 
 testFrameworks += new TestFramework("utest.runner.Framework")
 fork           := true
