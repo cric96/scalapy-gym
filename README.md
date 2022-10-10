@@ -38,7 +38,8 @@ To use other environments (`box2d` or `MuJuCo` and `Atari`), please refer to [Op
 
 ## How to use
 
-This library tries to make environments type safe. So you have to define:
+This library tries to make environments type safe. 
+So you have to define:
 - action type
 - observation type
 - action space type
@@ -78,7 +79,7 @@ env.close()
 
 As you can see, the experience is very similar :)
 
-Some environments have already the correct typing (Looks to [EnvFactory](/src/main/scala/gym/envs/EnvFactory.scala))
+Some environments have already the correct typing (look to [EnvFactory](/src/main/scala/gym/envs/EnvFactory.scala))
 
 ### Typings
 - ToyTest
