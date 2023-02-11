@@ -9,7 +9,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.4.1")
 // Publish pages
 addSbtPlugin("io.kevinlee" % "sbt-github-pages" % "0.12.0")
 // Coverage
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.0.0")
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.0.7")
 // Sonatype upload
 addSbtPlugin("com.github.sbt" % "sbt-ci-release"       % "1.5.11")
 addSbtPlugin("org.xerial.sbt" % "sbt-sonatype"         % "3.9.17")
