@@ -11,6 +11,6 @@ addSbtPlugin("io.kevinlee" % "sbt-github-pages" % "0.12.0")
 // Coverage
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.0.0")
 // Sonatype upload
-addSbtPlugin("com.github.sbt" % "sbt-ci-release"       % "1.5.11")
+addSbtPlugin("com.github.sbt" % "sbt-ci-release"       % "1.5.12")
 addSbtPlugin("org.xerial.sbt" % "sbt-sonatype"         % "3.9.19")
 addSbtPlugin("io.shiftleft"   % "sbt-ci-release-early" % "2.0.39") //for auto-tagging
