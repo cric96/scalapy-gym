@@ -5,7 +5,7 @@ addSbtPlugin("org.scalameta"   % "sbt-scalafmt"    % "2.5.2")
 // Publish helper
 addSbtPlugin("com.github.sbt" % "sbt-dynver" % "5.0.1")
 // Site generator
-addSbtPlugin("com.github.sbt" % "sbt-site" % "1.6.0")
+addSbtPlugin("com.github.sbt" % "sbt-site" % "1.7.0")
 // Publish pages
 addSbtPlugin("io.kevinlee" % "sbt-github-pages" % "0.14.0")
 // Coverage
