@@ -3,7 +3,7 @@ addSbtPlugin("org.jetbrains" % "sbt-ide-settings" % "1.1.0")
 addSbtPlugin("org.wartremover" % "sbt-wartremover" % "2.4.21")
 addSbtPlugin("org.scalameta"   % "sbt-scalafmt"    % "2.5.2")
 // Publish helper
-addSbtPlugin("com.github.sbt" % "sbt-dynver" % "5.0.1")
+addSbtPlugin("com.github.sbt" % "sbt-dynver" % "5.1.0")
 // Site generator
 addSbtPlugin("com.github.sbt" % "sbt-site" % "1.6.0")
 // Publish pages
