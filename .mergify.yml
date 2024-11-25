@@ -1,9 +1,14 @@
 queue_rules:
   - name: default
-    conditions:
+    queue_conditions:
+      - author=cric96
+      - status-success=Build
+    merge_conditions:
       # Conditions to get out of the queue (= merged)
       - author=cric96
       - status-success=Build
+    merge_method: merge
+
 pull_request_rules:
   - name: assign and label scala-steward's PRs
     conditions:
@@ -14,10 +19,6 @@ pull_request_rules:
       label:
         add: [dependency-update]
   - name: merge scala-steward's PRs
-    conditions:
-      - author=cric96
-      - status-success=Build
+    conditions: []
     actions:
       queue:
-        method: merge
-        name: default
